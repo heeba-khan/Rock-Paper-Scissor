@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.main-heading{
+    font-size: 3rem;
+    padding: 50px 10px;
+}
+.cards{
+    display: flex;
+    padding: 10px 40px;
+    gap: 10px;
+}
+
+
+button{
+    display: flex;
+    height:50px;
+    width: 80px;
+    padding: 10px 30px;
+    text-align: center;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.scores{
+    display: flex;
+    gap: 100px;
+    padding: 50px 10px;
+}
+
+.result{
+    padding-top: 20px;
+}
+
+.result p{
+    font-size: 24px;
+}

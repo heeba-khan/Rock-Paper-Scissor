@@ -1,75 +1,104 @@
-// console.log("Hello Heeba, What's Up baby girl. Go for it. You got this love, You got this.")
-// const num=Math.random()
-const humanScore=0
-const computerScore=0
+const buttons=document.querySelectorAll('.buttons')
 
-function getComputerChoice(){
-    let choice = Math.random() * 3;
+buttons.forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+        console.log("Button clicked:", btn.textContent);
+        let humanpick=btn.textContent;
+        playground(humanpick)
+    })
+})
 
-    if(choice > 2) {
+
+let humanscore=0;
+let computerscore=0;
+let result=0;
+
+function getcomputerchoice(){
+    let choice=Math.random()*3;
+    console.log(choice)
+
+    if(choice>2){
         return "rock"
-    } else if (choice > 1) {
+    }
+    else if(choice>1){
         return "paper"
-    } else return "scissors"
+    }
+    else
+        return "scissor"
 }
 
-// getComputerChoice()
 
-function getHumanChoice(){
-    return prompt("What will you play?")
-}
-
+// function gethumanchoice(){
+//     return prompt("What would you like to choose?")
+// }
 
 function play(human,computer){
-    const humanPick = human.toLowerCase();
-    const computerPick = computer;
-    
-    if(humanPick == "rock" && computerPick == "rock") {
-        console.log("Draw! You both chose Rock");
+    let humanpick=human.toLowerCase();
+    let computerpick=computer;
+
+    if(humanpick=='rock'&&computerpick=='rock')
+        result="Game Tied!!"
+    if(humanpick=='rock'&&computerpick=='paper')
+        {result="COmputer WOn"
+            computerscore++;
+        }
+    if(humanpick=='rock'&&computerpick=='scissor')
+        {result="Human Won"
+            humanscore++;
+        }
+    if(humanpick=='paper'&&computerpick=='paper')
+        result="Game Tied!!"
+    if(humanpick=='paper'&&computerpick=='rock')
+        {result="Human Won"
+            humanscore++;
+        }
+    if(humanpick=='paper'&&computerpick=='scissor')
+       {result="Human Won"
+        humanscore++;
+       }
+    if(humanpick=='scissor'&&computerpick=='scissor')
+         result="Game Tied!!"
+    if(humanpick=='scissor'&&computerpick=='rock')
+        {
+           result="COmputer WOn"
+            computerscore++;
+        }
+    if(humanpick=='scissor'&&computerpick=='paper')
+        {result="Human Won"
+            humanscore++;
+        }
+}
+
+// function playground(){
+//     for(let i=0;i<5;i++){
+//         play(gethumanchoice,getcomputerchoice);
+//     }
+//     console.log(`The scores are :- Human Score - ${humanscore} and Computer Score - ${computerscore}`)
+// }
+
+// playground();
+
+function playground(humanpick){
+    let computerSelection=getcomputerchoice();
+    console.log("Human Pick:", humanpick, "Computer Pick:", computerSelection);
+    // let humanSelection=humanpick
+    play(humanpick,computerSelection)
+
+    playerScore=document.querySelector('.player-score h2')
+    compScore=document.querySelector('.computer-score h2')
+    winner=document.querySelector('.win p')
+
+    playerScore.textContent=`Player : ${humanscore}`
+    compScore.textContent=`Computer : ${computerscore}`
+    winner.textContent=`The winner is : ${result}`
+
+    if(humanscore>=5){
+        winner.textContent="Human Won the entire game"
     }
-    if(humanPick == "rock" && computerPick == "paper") {
-        console.log("You lose! Paper beats Rock");
-        computerScore++
-    }
-    if(humanPick == "rock" && computerPick == "scissors") {
-        console.log("You win! Rock beats Scissors");
-        humanScore++
-    }
-    if(humanPick == "paper" && computerPick == "rock") {
-        console.log("You win! Paper beats Rock");
-        humanScore++
-    }
-    if(humanPick == "paper" && computerPick == "paper") {
-        console.log("Draw! You both chose Paper");
-    }
-    if(humanPick == "paper" && computerPick == "scissors") {
-        console.log("You lose! Scissors beats Paper");
-        computerScore++
-    }
-    if(humanPick == "scissors" && computerPick == "rock") {
-        console.log("You lose! Rock beats Scissors");
-        computerScore++
-    }
-    if(humanPick == "scissors" && computerPick == "paper") {
-        console.log("You win! Scissors beats Paper");
-        humanScore++
-    }
-    if(humanPick == "scissors" && computerPick == "scissors") {
-        console.log("Draw! You both chose Scissors");
+    else if(computerscore>=5){
+        winner.textContent="Computer Won the entire game"
     }
 
 }
 
-// const humanSelect=getHumanChoice();
-// const computerSelect=getComputerChoice();
 
-// play(humanSelect,computerSelect);
-
-function playground(){
-    for(let i=0;i<5;i++){
-        play(getHumanChoice(),getComputerChoice())
-    }
-    console.log(`Results are: Humans:${humanScore} and Computers: ${computerScore}`)
-}
-
-playground();
